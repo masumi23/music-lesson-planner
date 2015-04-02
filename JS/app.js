@@ -29,18 +29,21 @@ var ViewModel = function () {
 	var self = this;
 	//creating the songlist
 	this.songList = ko.observableArray([]);
-	console.log(this.songList());
 	//for each initial song, pass it's data through Song
 	//to make it into a song, then push it to songList.
 	initialSongs.forEach(function(songdata){
 		self.songList().push( new Song(songdata) );
 	});
-	console.log(this.songList());
 	//perhaps in the future make it random in the future
+	this.myList = ko.observableArray([]);
+
 	this.currentSong = ko.observable(this.songList()[0]);
 	this.setSong = function (clickedSong) {
 		self.currentSong(clickedSong);
 		console.log('clicked');
+	};
+	this.addMyList = function () {
+		self.myList.push(self.currentSong());
 	};
 };
 

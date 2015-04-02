@@ -11,6 +11,12 @@
 		<a data-bind="attr: {href: songUrl}"><h2 data-bind="text: songName"></h2></a>
 		<h3 data-bind="text: key"></h3>
 	</div>
+	<button data-bind="click: addMyList">Add to My List</button>
+	
+	<h2>My List</h2>
+	<ul data-bind="foreach:myList">
+		<li><a href="#" data-bind="text:songName, click: $parent.setSong"></a></li>
+	</ul>
 	<h2>Available Songs</h2>
 	<ul data-bind="foreach:songList">
 		<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
