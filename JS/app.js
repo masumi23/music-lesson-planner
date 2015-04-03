@@ -36,6 +36,7 @@ var ViewModel = function () {
 	});
 	//perhaps in the future make it random in the future
 	this.myList = ko.observableArray([]);
+	this.planningView = ko.observable(false);
 
 	this.currentSong = ko.observable(this.songList()[0]);
 	this.setSong = function (clickedSong) {
@@ -45,6 +46,11 @@ var ViewModel = function () {
 	this.addMyList = function () {
 		self.myList.push(self.currentSong());
 	};
+	this.togglePlanningView = function () {
+		self.planningView( !self.planningView() );
+		console.log(self.planningView());
+	};
+
 };
 
 ko.applyBindings(new ViewModel());
