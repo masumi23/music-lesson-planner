@@ -5,32 +5,39 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Single Song</h1>
-	<h2>Current Song</h2>
-	<div data-bind="with: currentSong()">
-		<a data-bind="attr: {href: songUrl}"><h2 data-bind="text: songName"></h2></a>
-		<h3 data-bind="text: key"></h3>
-	</div>
-	<button data-bind="click: addToCurrentList">Add to My List</button>
 	
-	<h2>Current List: <span data-bind="text:currentList().name"></span> </h2>
+	<div data-bind="with: currentSong()">
+		<h3>Song: 
+			<a data-bind="text: songName(), attr: {href: songUrl}"></a>
+		</h3>
+		<p data-bind="text: key"></p>
+	</div>
+
+	<button data-bind="click: addToCurrentList">Add to My List</button>
+
+	<h3>Current List: <span data-bind="text:currentList().name"></span> </h3>
+
 	<button data-bind="text: planningView() ? 'go to list view' : 'go to planning view', click: togglePlanningView">Planning View</button>
+
 	<div data-bind="visible: planningView">
 		<!-- I want to be able to edit this according to how many properties there are -->
 		<div>test</div>
 	</div>
+
 	<ul data-bind="foreach:currentList().list, visible: !planningView()">
 		<li><a href="#" data-bind="text:songName, click: $parent.setSong"></a></li>
 	</ul>
-	<h2>List of Lists</h2>
+	
+	<h3>List of Lists</h3>
 	<ul data-bind="foreach:lOL">
 		<li><a href="#" data-bind="text:name, click:$parent.setList"></a>
-			<ul>
+			<ul data-bind="visible:notes">
 				<li data-bind="text:notes"></li>
 			</ul>
 		</li>
 	</ul>
-	<h2>Available Songs</h2>
+	
+	<h3>Available Songs</h3>
 	<ul data-bind="foreach:songList">
 		<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
 	</ul>
