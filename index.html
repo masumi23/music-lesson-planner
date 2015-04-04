@@ -19,9 +19,12 @@
 
 	<button data-bind="text: planningView() ? 'go to list view' : 'go to planning view', click: togglePlanningView">Planning View</button>
 
-	<div data-bind="visible: planningView">
+	<div data-bind="visible: planningView, with:currentList">
 		<!-- I want to be able to edit this according to how many properties there are -->
-		<div>test</div>
+		<div data-bind="foreach:list">
+			<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
+			<div data-bind="text:key"></div>
+		</div>
 	</div>
 
 	<ul data-bind="foreach:currentList().list, visible: !planningView()">
