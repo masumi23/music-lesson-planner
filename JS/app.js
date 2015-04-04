@@ -24,6 +24,27 @@ var Song = function (data) {
 	this.key = ko.observable(data.key);
 };
 
+var initialLists = [
+	{
+		name: "list1",
+		notes: ""
+	},
+
+	{
+		name: "list2"
+	},
+
+	{
+		name: "list3"
+	}
+];
+
+var List = function (data) {
+	this.name = ko.observable(data.name);
+	this.notes = ko.observable(data.notes);
+	this.list = ko.observableArray(data.list);
+};
+
 var ViewModel = function () {
 	console.log('start');
 	var self = this;
@@ -34,8 +55,12 @@ var ViewModel = function () {
 	initialSongs.forEach(function(songdata){
 		self.songList().push( new Song(songdata) );
 	});
-	//perhaps in the future make it random in the future
-	this.myList = ko.observableArray([]);
+	//creating list of Lists
+	this.lOL = ko.observableArray ([]);
+	//populating the array
+	initialLists.forEach(function(listdata){
+		self.lOL().push( new List(listdata) );
+	});
 	this.planningView = ko.observable(false);
 
 	this.currentSong = ko.observable(this.songList()[0]);
@@ -43,8 +68,14 @@ var ViewModel = function () {
 		self.currentSong(clickedSong);
 		console.log('clicked');
 	};
-	this.addMyList = function () {
-		self.myList.push(self.currentSong());
+	
+	this.currentList = ko.observable(this.lOL()[0]);
+	this.setList = function (clickedList) {
+		self.currentList(clickedList);
+		console.log('clicked list');
+	};
+	this.addToCurrentList = function () {
+		self.currentList().list.push(self.currentSong());
 	};
 	this.togglePlanningView = function () {
 		self.planningView( !self.planningView() );
