@@ -27,10 +27,6 @@
 
 		{
 			name: "list2"
-		},
-
-		{
-			name: "list3"
 		}
 	];
 
@@ -53,10 +49,6 @@
 	var ViewModel = function () {
 		var self = this;
 		this.pages = ["overview", "planning", "review"];
-				
-		// initial state
-		this.planningView = ko.observable(false);
-
 
 		// create the songlist
 		this.songList = ko.observableArray([]);
@@ -76,13 +68,14 @@
 		});
 
 		// set initial data
-		this.currentPage = ko.observable('overview');
+		this.currentPage = ko.observable('planning');
 		this.currentSong = ko.observable(this.songList()[0]);
 		this.currentList = ko.observable(this.lOL()[0]);
 
 		
 		this.setSong = function (clickedSong) {
 			self.currentSong(clickedSong);
+			self.currentPage('planning');
 		};
 		
 		this.setList = function (clickedList) {
