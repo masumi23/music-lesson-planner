@@ -55,6 +55,7 @@
 		console.log('start');
 		
 		// initial state
+		this.currentPage = ko.observable('overview');
 		this.planningView = ko.observable(false);
 
 
