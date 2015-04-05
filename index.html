@@ -13,23 +13,20 @@
 	<div data-bind="visible: currentPage() === 'overview'">
 		
 		<h3>Current List: <span data-bind="text:currentList().name"></span> </h3>
-
-		<ul data-bind="foreach:currentList().list">
-			<li><a href="#" data-bind="text:songName, click: $parent.setSong"></a></li>
+		<ul data-bind="foreach:currentList().songList">
+			<li><a href="#" data-bind="text:songName, click: $root.setSong"></a></li>
 		</ul>
 		
-		<h3>List of Lists</h3>
+		<h3>Master List</h3>
 		<ul data-bind="foreach:lOL">
-			<li><a href="#" data-bind="text:name, click:$parent.setList"></a>
+			<li><a href="#" data-bind="text:name, click:$root.setList"></a>
 				<ul data-bind="visible:notes">
 					<li data-bind="text:notes"></li>
 				</ul>
+				<ul data-bind="foreach: songList">
+					<li data-bind="text: songName, click: $root.setSong"></li>
+				</ul>
 			</li>
-		</ul>
-		
-		<h3>Available Songs</h3>
-		<ul data-bind="foreach:masterSongList">
-			<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
 		</ul>
 
 	</div>
@@ -60,7 +57,7 @@
 
 		<h3>Available Songs</h3>
 		<ul data-bind="foreach:masterSongList">
-			<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
+			<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
 		</ul>
 
 	</div>
