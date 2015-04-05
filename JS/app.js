@@ -42,7 +42,7 @@
 	var List = function (data) {
 		this.name = ko.observable(data.name);
 		this.notes = ko.observable(data.notes);
-		this.list = ko.observableArray(data.list);
+		this.songList = ko.observableArray(data.songList);
 	};
 
 
@@ -50,16 +50,16 @@
 		var self = this;
 		this.pages = ["overview", "planning", "review"];
 
-		// create the songlist
-		this.songList = ko.observableArray([]);
+		// create the masterSongList
+		this.masterSongList = ko.observableArray([]);
 		
 		// create list of Lists
 		this.lOL = ko.observableArray ([]);
 
 		// for each initial song, pass it's data through Song
-		// to make it into a song, then push it to songList.
+		// to make it into a song, then push it to masterSongList.
 		initialSongs.forEach(function(songdata){
-			self.songList().push( new Song(songdata) );
+			self.masterSongList().push( new Song(songdata) );
 		});
 		
 		// populate the list array
@@ -69,7 +69,7 @@
 
 		// set initial data
 		this.currentPage = ko.observable('planning');
-		this.currentSong = ko.observable(this.songList()[0]);
+		this.currentSong = ko.observable(this.masterSongList()[0]);
 		this.currentList = ko.observable(this.lOL()[0]);
 
 		
@@ -83,7 +83,7 @@
 		};
 
 		this.addToCurrentList = function () {
-			self.currentList().list.push( self.currentSong() );
+			self.currentList().songList.push( self.currentSong() );
 		};
 
 		this.togglePlanningView = function () {

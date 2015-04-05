@@ -28,7 +28,7 @@
 		</ul>
 		
 		<h3>Available Songs</h3>
-		<ul data-bind="foreach:songList">
+		<ul data-bind="foreach:masterSongList">
 			<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
 		</ul>
 
@@ -49,14 +49,17 @@
 
 		<button data-bind="click: addToCurrentList">Add to <span data-bind="text: currentList().name"></span></button>
 		
-		<h3>Current List: <span data-bind="text: currentList().name"></span></h3>
-		<div data-bind="foreach: currentList().list">
-			<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
-			<div data-bind="text:key"></div>
+		<div data-bind="with: currentList">
+			<h3>Current List: <span data-bind="text: name"></span></h3>
+			<p data-bind="text: "></p>
+			<div data-bind="foreach: songList">
+				<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
+				<div data-bind="text:key"></div>
+			</div>
 		</div>
-		
+
 		<h3>Available Songs</h3>
-		<ul data-bind="foreach:songList">
+		<ul data-bind="foreach:masterSongList">
 			<li><a href="#" data-bind="text:songName, click: $parent.setSong" ></a></li>
 		</ul>
 
