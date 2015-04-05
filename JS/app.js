@@ -17,7 +17,7 @@
 			songName: 'Baker shop (Down to the)',
 			songUrl: 'http://kodaly.hnu.edu/song.cfm?id=907',
 			key: 'D / Drmfsl'
-		},
+		}
 	];
 
 	var initialLists = [
@@ -33,6 +33,7 @@
 			name: "list3"
 		}
 	];
+
 
 
 	var Song = function (data) {
@@ -51,11 +52,9 @@
 
 	var ViewModel = function () {
 		var self = this;
-		
-		console.log('start');
-		
+		this.pages = ["overview", "planning", "review"];
+				
 		// initial state
-		this.currentPage = ko.observable('overview');
 		this.planningView = ko.observable(false);
 
 
@@ -77,6 +76,7 @@
 		});
 
 		// set initial data
+		this.currentPage = ko.observable('overview');
 		this.currentSong = ko.observable(this.songList()[0]);
 		this.currentList = ko.observable(this.lOL()[0]);
 

@@ -7,6 +7,8 @@
 </head>
 <body>
 	
+	<select name="nav" data-bind="options: pages, value: currentPage, optionsCaption:'choose...'">
+	</select>
 	<!-- Overview Page -->
 	<div data-bind="visible: currentPage() === 'overview'">
 		
