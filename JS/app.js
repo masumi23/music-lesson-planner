@@ -48,7 +48,7 @@
 
 	var ViewModel = function () {
 		var self = this;
-		this.pages = ["overview", "planning"];
+		this.pages = ["editing", "planning"];
 
 		// create the masterSongList
 		this.masterSongList = ko.observableArray([]);

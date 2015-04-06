@@ -10,7 +10,7 @@
 	<select name="nav" data-bind="options: pages, value: currentPage, optionsCaption:'choose...'">
 	</select>
 	<!-- Overview Page -->
-	<div data-bind="visible: currentPage() === 'overview'">
+	<div data-bind="visible: currentPage() === 'planning'">
 		
 		<h3>Current List: <span data-bind="text:currentList().name"></span> </h3>
 		<ul data-bind="foreach:currentList().songList">
@@ -36,43 +36,40 @@
 
 
 	<!-- Planning Page -->
-	<div data-bind="visible: currentPage() === 'planning'">
-		<div data-bind="with: currentSong()">
-			<h3>Song: 
-				<a data-bind="text: songName(), attr: {href: songUrl}"></a>
-			</h3>
-			<p data-bind="text: key"></p>
-		</div>
+	<div data-bind="visible: currentPage() === 'editing'">
+		<div class="row">
 
-		<button data-bind="click: addToCurrentList">Add to <span data-bind="text: currentList().name"></span></button>
-		
-		<div data-bind="with: currentList">
-			<h3>Current List: <span data-bind="text: name"></span></h3>
-			<p data-bind="text: "></p>
-			<div data-bind="foreach: songList">
-				<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
-				<div data-bind="text:key"></div>
+			<div class="col-sm-3">
+				<h3>Available Songs</h3>
+				<ul data-bind="foreach:masterSongList">
+					<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
+				</ul>
 			</div>
+
+			<div class="col-sm-4">
+				<div data-bind="with: currentSong()">
+					<h3>Song: 
+						<a data-bind="text: songName(), attr: {href: songUrl}"></a>
+					</h3>
+					<p data-bind="text: key"></p>
+				</div>
+
+				<button data-bind="click: addToCurrentList">Add to <span data-bind="text: currentList().name"></span></button>
+			</div>
+
+			<div class="col-sm-5">
+				<div data-bind="with: currentList">
+					<h3>Current List: <span data-bind="text: name"></span></h3>
+					<p data-bind="text: "></p>
+					<div data-bind="foreach: songList">
+						<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
+						<div data-bind="text:key"></div>
+					</div>
+				</div>
+			</div>
+
 		</div>
-
-		<h3>Available Songs</h3>
-		<ul data-bind="foreach:masterSongList">
-			<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
-		</ul>
-
 	</div>
-
-
-
-
-
-	<!-- Review Page -->
-	<div data-bind="visible: currentPage() === 'review'">
-		
-	</div>
-
-
-
 
 
 	<script src="js/lib/knockout-3.2.0.js"></script>
