@@ -1,4 +1,5 @@
 // (function(){
+// connecting things to json
 	var app = {
 		model: {}
 	};
@@ -20,7 +21,7 @@
 		init();
 	});
 
-
+//the rest of the code
 	function init() {
 		console.log(app.model);
 
@@ -74,9 +75,13 @@
 			this.currentSong = ko.observable(this.masterSongList()[0]);
 
 			
+			this.setPage = function (clickedPage) {
+				self.currentPage(clickedPage);
+			};
+			
 			this.setSong = function (clickedSong) {
 				self.currentSong(clickedSong);
-				self.currentPage('planning');
+				self.currentPage('editing');
 			};
 			
 			this.setList = function (clickedList) {

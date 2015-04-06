@@ -7,8 +7,9 @@
 </head>
 <body>
 	
-	<select name="nav" data-bind="options: pages, value: currentPage, optionsCaption:'choose...'">
-	</select>
+	<ul class="nav nav-tabs" data-bind="foreach: pages">
+		<li role="presentation" <a href="#" data-bind="text: $data, click: $root.setPage"></a></li>
+	</ul>
 	<!-- Semester Page -->
 	<div data-bind="visible: currentPage() === 'semester'">
 		
@@ -50,7 +51,7 @@
 			<div class="col-sm-4">
 				<div data-bind="with: currentSong()">
 					<h3>Song: 
-						<a data-bind="text: songName(), attr: {href: songUrl}"></a>
+						<a data-bind="text: songName, attr: {href: songUrl}"></a>
 					</h3>
 					<p data-bind="text: key"></p>
 				</div>
