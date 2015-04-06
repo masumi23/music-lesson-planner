@@ -31,6 +31,7 @@
 			this.songUrl = ko.observable(data.songUrl);
 			this.key = ko.observable(data.key);
 			this.uid = ko.observable(data.uid);
+			this.notes = ko.observable(data.notes);
 		};
 
 
@@ -75,6 +76,7 @@
 
 			// set current variables
 			this.currentSemester = ko.observable(this.semesters()[0]);
+			console.log(this.currentSemester().name()+"semester!!!");
 			this.currentClass = ko.observable(this.currentSemester().classes()[0]);
 			this.currentSong = ko.observable(this.masterSongList()[0]);
 

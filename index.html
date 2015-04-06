@@ -41,9 +41,6 @@
 	</div>
 
 
-
-
-
 	<!-- Planning Page -->
 	<div data-bind="visible: currentPage() === 'editing'">
 		<div data-bind="with: currentClass">
@@ -85,9 +82,9 @@
 			</div>
 			
 			<div class="col-sm-4">
-				<h3>Class List</h3>
-				<ul data-bind="foreach: currentSemester()">
-					<li data-bind="text: name">something</li>
+				<h3>Class List for <span data-bind="text: currentSemester().name"></span></h3>
+				<ul data-bind="foreach: currentSemester().classes">
+					<li data-bind="text: name"></li>
 				</ul>
 			</div>
 
