@@ -30,13 +30,15 @@
 			this.songName = ko.observable(data.songName);
 			this.songUrl = ko.observable(data.songUrl);
 			this.key = ko.observable(data.key);
+			this.uid = ko.observable(data.uid);
 		};
 
 
-		var List = function (data) {
+		var Class = function (data) {
+			this.date = ko.observable(data.date);
 			this.name = ko.observable(data.name);
 			this.notes = ko.observable(data.notes);
-			this.songList = ko.observableArray(data.songList);
+			this.songs = ko.observableArray(data.songList);
 		};
 
 
@@ -46,7 +48,7 @@
 
 			// UI State
 			this.pages = ["editing", "semester"];
-			this.currentPage = ko.observable('semester');
+			this.currentPage = ko.observable('editing');
 
 
 			// Populate our song data:
@@ -64,7 +66,7 @@
 
 			app.model.semesters.forEach(function(semester){
 				semester.classes.forEach(function(listdata){
-					self.semesters().push( new List(listdata) );
+					self.semesters().push( new Class(listdata) );
 				});
 			});
 
@@ -78,18 +80,19 @@
 			this.setPage = function (clickedPage) {
 				self.currentPage(clickedPage);
 			};
-			
+
 			this.setSong = function (clickedSong) {
 				self.currentSong(clickedSong);
 				self.currentPage('editing');
 			};
 			
-			this.setList = function (clickedList) {
+			this.setClass = function (clickedList) {
 				self.currentClass(clickedList);
+				self.currentPage("editing");
 			};
 
 			this.addToCurrentClass = function () {
-				self.currentClass().songList.push( self.currentSong() );
+				self.currentClass().songs.push( self.currentSong() );
 				console.log(self.currentClass());
 			};
 

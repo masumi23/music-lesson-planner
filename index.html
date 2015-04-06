@@ -11,34 +11,7 @@
 		<li role="presentation" <a href="#" data-bind="text: $data, click: $root.setPage"></a></li>
 	</ul>
 	<!-- Semester Page -->
-	<div data-bind="visible: currentPage() === 'semester'">
-		
-		<h3>Current List: <span data-bind="text:currentClass().name"></span> </h3>
-		<ul data-bind="foreach:currentClass().songs">
-			<li><a href="#" data-bind="text:uid, click: $root.setSong"></a></li>
-		</ul>
-		
-		<h3>Master List</h3>
-		<ul data-bind="foreach:currentSemester().classes">
-			<li><a href="#" data-bind="text:name, click:$root.setList"></a>
-				<ul data-bind="visible:notes">
-					<li data-bind="text:notes"></li>
-				</ul>
-				<hr>
-				<ul data-bind="foreach: songs">
-					<li data-bind="text: uid, click: $root.setSong"></li>
-				</ul>
-			</li>
-		</ul>
-
-	</div>
-
-
-
-
-
-	<!-- Planning Page -->
-	<!-- <div data-bind="visible: currentPage() === 'editing'">
+	<div data-bind="visible: currentPage() === 'semester'">	
 		<div class="row">
 
 			<div class="col-sm-3">
@@ -47,8 +20,34 @@
 					<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
 				</ul>
 			</div>
+			
+			<div class="col-sm-9">
+				<h3>Master List</h3>
+				<ul data-bind="foreach:currentSemester().classes">
+					<li><a href="#" data-bind="text:name, click:$root.setClass"></a>
+						<ul data-bind="visible:notes">
+							<li data-bind="text:notes"></li>
+						</ul>
+						<hr>
+						<ul data-bind="foreach: songs">
+							<li data-bind="text: uid, click: $root.setSong"></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 
-			<div class="col-sm-4">
+		</div>
+	</div>
+
+
+
+
+
+	<!-- Planning Page -->
+	<div data-bind="visible: currentPage() === 'editing'">
+		<div class="row">
+
+			<div class="col-sm-7">
 				<div data-bind="with: currentSong()">
 					<h3>Song: 
 						<a data-bind="text: songName, attr: {href: songUrl}"></a>
@@ -61,17 +60,17 @@
 
 			<div class="col-sm-5">
 				<div data-bind="with: currentClass">
-					<h3>Current List: <span data-bind="text: name"></span></h3>
-					<p data-bind="text: "></p>
+					<h3>Current Class: <span data-bind="text: name"></span></h3>
+					<p data-bind="text: notes"></p>
 					<div data-bind="foreach: songs">
-						<div><a href="#" data-bind="text:uid, attr: {href: songUrl}"></a></div>
-						<div data-bind="text:key"></div>
+						<div><a href="#" data-bind="text:uid"></a></div>
+						<div data-bind="text:notes"></div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-	</div> -->
+	</div>
 
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

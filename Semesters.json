@@ -9,7 +9,44 @@
                 "notes": "This was a pretty good class, aside from Timmy who was angry and petulant",
                 "songs": [
                     {
-                        "uid": 132,
+                        "uid": 1,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    },
+
+                    {
+                        "uid": 2,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    },
+
+                    {
+                        "uid": 1,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    }
+                ]
+            },
+
+            {
+                "date": "1438217200000",
+                "name": "November 6, 2015",
+                "notes": "This was a pretty good class",
+                "songs": [
+                    {
+                        "uid": 3,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    },
+
+                    {
+                        "uid": 3,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    },
+
+                    {
+                        "uid": 3,
                         "notes": "This song is horrible for teaching squirrels.",
                         "key": "C"
                     }
