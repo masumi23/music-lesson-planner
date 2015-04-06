@@ -9,8 +9,8 @@
 	
 	<select name="nav" data-bind="options: pages, value: currentPage, optionsCaption:'choose...'">
 	</select>
-	<!-- Overview Page -->
-	<div data-bind="visible: currentPage() === 'planning'">
+	<!-- Semester Page -->
+	<div data-bind="visible: currentPage() === 'semester'">
 		
 		<h3>Current List: <span data-bind="text:currentList().name"></span> </h3>
 		<ul data-bind="foreach:currentList().songList">

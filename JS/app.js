@@ -48,7 +48,7 @@
 
 	var ViewModel = function () {
 		var self = this;
-		this.pages = ["editing", "planning"];
+		this.pages = ["editing", "semester"];
 
 		// create the masterSongList
 		this.masterSongList = ko.observableArray([]);
@@ -63,12 +63,12 @@
 		});
 		
 		// populate the list array
-		initialLists.forEach(function(listdata){
+		initialClasses.forEach(function(listdata){
 			self.lOL().push( new List(listdata) );
 		});
 
 		// set initial data
-		this.currentPage = ko.observable('planning');
+		this.currentPage = ko.observable('semester');
 		this.currentSong = ko.observable(this.masterSongList()[0]);
 		this.currentList = ko.observable(this.lOL()[0]);
 
@@ -84,6 +84,7 @@
 
 		this.addToCurrentList = function () {
 			self.currentList().songList.push( self.currentSong() );
+			console.log(self.currentList());
 		};
 
 		this.togglePlanningView = function () {
