@@ -7,7 +7,8 @@
 </head>
 <body>
 	
-	<ul class="nav nav-tabs" data-bind="foreach: pages">
+	<!-- still doesn't work well -->
+	<ul class="nav nav-pills" data-bind="foreach: pages">
 		<li role="presentation" <a href="#" data-bind="text: $data, click: $root.setPage"></a></li>
 	</ul>
 	<!-- Semester Page -->
@@ -45,28 +46,49 @@
 
 	<!-- Planning Page -->
 	<div data-bind="visible: currentPage() === 'editing'">
+		<div data-bind="with: currentClass">
+			<h3>Current Class: <span data-bind="text: name"></span></h3>
+			<p data-bind="text: notes"></p>
+			<div data-bind="foreach: songs">
+				<div><a href="#" data-bind="text:uid"></a></div>
+				<div data-bind="text:notes"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Review Page -->
+
+	<div data-bind="visible: currentPage() === 'review'">
 		<div class="row">
-
-			<div class="col-sm-7">
-				<div data-bind="with: currentSong()">
-					<h3>Song: 
-						<a data-bind="text: songName, attr: {href: songUrl}"></a>
-					</h3>
-					<p data-bind="text: key"></p>
-				</div>
-
-				<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
+			
+			<div class="col-sm-4">
+				<h3>Available Songs</h3>
+				<ul data-bind="foreach:masterSongList">
+					<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
+				</ul>
 			</div>
 
-			<div class="col-sm-5">
-				<div data-bind="with: currentClass">
-					<h3>Current Class: <span data-bind="text: name"></span></h3>
-					<p data-bind="text: notes"></p>
-					<div data-bind="foreach: songs">
-						<div><a href="#" data-bind="text:uid"></a></div>
-						<div data-bind="text:notes"></div>
+			<div class="col-sm-4">
+				<h3>Display</h3>
+				
+				<div data-bind="visible: reviewDisplay() === 'song'">
+					<div data-bind="with: currentSong()">
+						<h3>Song: 
+							<a data-bind="text: songName, attr: {href: songUrl}"></a>
+						</h3>
+						<p data-bind="text: key"></p>
 					</div>
+
+					<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
 				</div>
+
+			</div>
+			
+			<div class="col-sm-4">
+				<h3>Class List</h3>
+				<ul data-bind="foreach: currentSemester()">
+					<li data-bind="text: name">something</li>
+				</ul>
 			</div>
 
 		</div>

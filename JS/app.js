@@ -47,8 +47,10 @@
 			
 
 			// UI State
-			this.pages = ["editing", "semester"];
-			this.currentPage = ko.observable('editing');
+			this.pages = ["editing", "semester", "review"];
+			this.reviewDisplays = ["song", "class"];
+			this.currentPage = ko.observable('review');
+			this.reviewDisplay = ko.observable('song');
 
 
 			// Populate our song data:
@@ -83,7 +85,8 @@
 
 			this.setSong = function (clickedSong) {
 				self.currentSong(clickedSong);
-				self.currentPage('editing');
+				self.currentPage('review');
+				self.reviewDisplay('song');
 			};
 			
 			this.setClass = function (clickedList) {
