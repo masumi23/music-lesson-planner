@@ -1,21 +1,20 @@
-{
-    "semesters": [
-        {
-            "name": "Summer 2015",
-            "startingDate": "1428217200000",
-            "classes": [
-                {
-                    "date": "1428217200000",
-                    "notes": "This was a pretty good class, aside from Timmy who was angry and petulant",
-                    "songs": [
-                        {
-                            "uid": 132,
-                            "notes": "This song is horrible for teaching squirrels.",
-                            "key": "C"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+        "name": "Summer 2015",
+        "startingDate": "1428217200000",
+        "classes": [
+            {
+                "date": "1428217200000",
+                "name": "April 6, 2015",
+                "notes": "This was a pretty good class, aside from Timmy who was angry and petulant",
+                "songs": [
+                    {
+                        "uid": 132,
+                        "notes": "This song is horrible for teaching squirrels.",
+                        "key": "C"
+                    }
+                ]
+            }
+        ]
+    }
+]

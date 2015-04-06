@@ -12,19 +12,20 @@
 	<!-- Semester Page -->
 	<div data-bind="visible: currentPage() === 'semester'">
 		
-		<h3>Current List: <span data-bind="text:currentList().name"></span> </h3>
-		<ul data-bind="foreach:currentList().songList">
-			<li><a href="#" data-bind="text:songName, click: $root.setSong"></a></li>
+		<h3>Current List: <span data-bind="text:currentClass().name"></span> </h3>
+		<ul data-bind="foreach:currentClass().songs">
+			<li><a href="#" data-bind="text:uid, click: $root.setSong"></a></li>
 		</ul>
 		
 		<h3>Master List</h3>
-		<ul data-bind="foreach:lOL">
+		<ul data-bind="foreach:currentSemester().classes">
 			<li><a href="#" data-bind="text:name, click:$root.setList"></a>
 				<ul data-bind="visible:notes">
 					<li data-bind="text:notes"></li>
 				</ul>
-				<ul data-bind="foreach: songList">
-					<li data-bind="text: songName, click: $root.setSong"></li>
+				<hr>
+				<ul data-bind="foreach: songs">
+					<li data-bind="text: uid, click: $root.setSong"></li>
 				</ul>
 			</li>
 		</ul>
@@ -36,7 +37,7 @@
 
 
 	<!-- Planning Page -->
-	<div data-bind="visible: currentPage() === 'editing'">
+	<!-- <div data-bind="visible: currentPage() === 'editing'">
 		<div class="row">
 
 			<div class="col-sm-3">
@@ -54,25 +55,27 @@
 					<p data-bind="text: key"></p>
 				</div>
 
-				<button data-bind="click: addToCurrentList">Add to <span data-bind="text: currentList().name"></span></button>
+				<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
 			</div>
 
 			<div class="col-sm-5">
-				<div data-bind="with: currentList">
+				<div data-bind="with: currentClass">
 					<h3>Current List: <span data-bind="text: name"></span></h3>
 					<p data-bind="text: "></p>
-					<div data-bind="foreach: songList">
-						<div><a href="#" data-bind="text:songName, attr: {href: songUrl}"></a></div>
+					<div data-bind="foreach: songs">
+						<div><a href="#" data-bind="text:uid, attr: {href: songUrl}"></a></div>
 						<div data-bind="text:key"></div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/lib/knockout-3.2.0.js"></script>
+	<script src="js/lib/knockout.mapping-latest.js"></script>
 	<script src="js/app.js"></script>
 	
 </body>
