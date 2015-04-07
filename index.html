@@ -43,14 +43,19 @@
 
 	<!-- Planning Page -->
 	<div data-bind="visible: currentPage() === 'editing'">
-		<div data-bind="with: currentClass">
+		<form data-bind="with: currentClass">
 			<h3>Current Class: <span data-bind="text: name"></span></h3>
-			<p data-bind="text: notes"></p>
+			<p>
+				Notes: <input data-bind="textInput: notes"></input>
+			</p>
+			<p>
+				Materials: <input data-bind="textInput: materials"></input>
+			</p>
 			<div data-bind="foreach: songs">
 				<div><a href="#" data-bind="text:uid"></a></div>
-				<div data-bind="text:notes"></div>
+				<input data-bind="textInput:notes"></input>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<!-- Review Page -->
@@ -79,12 +84,19 @@
 					<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
 				</div>
 
+				<div data-bind="visible: reviewDisplay() === 'class'">
+					<div data-bind="with: currentClass">
+						<div data-bind="text: name"></div>
+						<div data-bind="text: notes"></div>
+					</div>
+				</div>
+
 			</div>
 			
 			<div class="col-sm-4">
 				<h3>Class List for <span data-bind="text: currentSemester().name"></span></h3>
 				<ul data-bind="foreach: currentSemester().classes">
-					<li data-bind="text: name"></li>
+					<li data-bind="text: name, click: $root.setReviewDisplayClass"></li>
 				</ul>
 			</div>
 

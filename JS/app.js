@@ -7,12 +7,10 @@
 	var d1 = $.Deferred();
 	var d2 = $.Deferred();
 	var j1 = $.getJSON("semesters.json").done(function(data){
-		console.log('poop');
 		app.model.semesters = data;
 		d1.resolve();
 	});
 	var j2 = $.getJSON("songs.json").done(function(data){
-		console.log('poop');
 		app.model.songs = data;
 		d2.resolve();
 	});
@@ -23,7 +21,7 @@
 
 //the rest of the code
 	function init() {
-		console.log(app.model);
+		console.log("init"+app.model);
 
 		
 		var Song = function (data) {
@@ -64,6 +62,7 @@
 
 			// Populate our semesters data:
 			this.semesters = ko.observableArray([]);
+
 			ko.mapping.fromJS(app.model.semesters, {}, this.semesters);
 
 
@@ -76,7 +75,6 @@
 
 			// set current variables
 			this.currentSemester = ko.observable(this.semesters()[0]);
-			console.log(this.currentSemester().name()+"semester!!!");
 			this.currentClass = ko.observable(this.currentSemester().classes()[0]);
 			this.currentSong = ko.observable(this.masterSongList()[0]);
 
@@ -93,7 +91,6 @@
 			
 			this.setClass = function (clickedList) {
 				self.currentClass(clickedList);
-				self.currentPage("editing");
 			};
 
 			this.addToCurrentClass = function () {
@@ -103,6 +100,14 @@
 
 			this.togglePlanningView = function () {
 				self.planningView( !self.planningView() );
+			};
+
+			this.setReviewDisplayClass = function () {
+				self.reviewDisplay('class');
+			};
+
+			this.getSong = function (song) {
+				// debugger;
 			};
 
 		};
