@@ -31,7 +31,7 @@
 						</ul>
 						<hr>
 						<ul data-bind="foreach: songs">
-							<li data-bind="text: uid, click: $root.setSong"></li>
+							<li data-bind="text: songName, click: $root.setSong"></li>
 						</ul>
 					</li>
 				</ul>
@@ -79,6 +79,7 @@
 							<a data-bind="text: songName, attr: {href: songUrl}"></a>
 						</h3>
 						<p data-bind="text: key"></p>
+						12321 = <p data-bind="text: $data"></p>
 					</div>
 
 					<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
