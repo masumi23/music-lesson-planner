@@ -3,122 +3,152 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-</head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+	<link href="bower_components/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet">
+	<link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
+	<link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet"></head>
 <body>
 	
-	<!-- still doesn't work well -->
-	<ul class="nav nav-pills" data-bind="foreach: pages">
-		<li role="presentation" <a href="#" data-bind="text: $data, click: $root.setPage"></a></li>
-	</ul>
-	<!-- Semester Page -->
-	<div data-bind="visible: currentPage() === 'semester'">	
-		<div class="row">
-
-			<div class="col-sm-3">
-				<h3>Available Songs</h3>
-				<ul data-bind="foreach:masterSongList">
-					<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
-				</ul>
-			</div>
-			
-			<div class="col-sm-9">
-				<h3>Master List</h3>
-				<ul data-bind="foreach:currentSemester().classes">
-					<li><a href="#" data-bind="text:name, click:$root.setClassReview"></a>
-						<ul data-bind="visible:notes">
-							<li data-bind="text:notes"></li>
-						</ul>
-						<hr>
-						<ul data-bind="foreach: songs">
-							<li data-bind="text: songName, click: $root.setSong"></li>
-						</ul>
-						<hr>
-					</li>
-				</ul>
-			</div>
-
-		</div>
+	<div class="navbar navbar-default">
+	    <div class="container">
+	    	<div class="navbar-header">
+	    	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	    	        <span class="icon-bar"></span>
+	    	        <span class="icon-bar"></span>
+	    	        <span class="icon-bar"></span>
+	    	    </button>
+	    	    <a class="navbar-brand" href="javascript:void(0)">Plan!</a>
+	    	</div>
+	    	<div class="navbar-collapse collapse navbar-responsive-collapse">
+	    	    <ul class="nav navbar-nav" data-bind="foreach: pages">
+	    	        <li data-bind="css: { active: $root.currentPage() === $data}"><a href="javascript:void(0)" data-bind="text: $data, click: $root.setPage">Active</a></li>
+	    	    </ul>
+	    	    <form class="navbar-form navbar-left">
+	    	        <input type="text" class="form-control col-lg-8" placeholder="Search">
+	    	    </form>
+	    	</div>
+	    </div>
 	</div>
 
+	<div class="container">
+		<!-- Semester Page -->
+		<div data-bind="visible: currentPage() === 'semester'">	
+			<div class="row">
 
-	<!-- Planning Page -->
-	<div data-bind="visible: currentPage() === 'editing'">
-		<form data-bind="with: currentClass">
-			<h3>Current Class: <span data-bind="text: name"></span></h3>
-			<p>
-				Notes: <textarea data-bind="textInput: notes"></textarea>
-			</p>
-			<p>
-				Materials: <input data-bind="textInput: materials"></input>
-			</p>
-			<div data-bind="foreach: songs">
-				<h4>
-					Song: <span data-bind="text:songName, click:$root.setSong"></span>
-				</h4>
-				<div>
-					URL: <input data-bind="textInput:songUrl"></input>
+				<div class="col-sm-3">
+					<h3>Available Songs</h3>
+					<ul data-bind="foreach:masterSongList">
+						<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
+					</ul>
 				</div>
-				<div>
-					Key: <input data-bind="textInput:key"></input>
-				</div>
-				<div>
-					Notes: <textarea data-bind="textInput:notes"></textarea>
-				</div>
-				<hr>
-			</div>
-		</form>
-	</div>
-
-	<!-- Review Page -->
-
-	<div data-bind="visible: currentPage() === 'review'">
-		<div class="row">
-			
-			<div class="col-sm-4">
-				<h3>Available Songs</h3>
-				<ul data-bind="foreach:masterSongList">
-					<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
-				</ul>
-			</div>
-
-			<div class="col-sm-4">
-				<h3>Display</h3>
 				
-				<div data-bind="visible: reviewDisplay() === 'song'">
-					<div data-bind="with: currentSong()">
-						<h3>Song: 
-							<a data-bind="text: songName, attr: {href: songUrl}"></a>
-						</h3>
-						<p data-bind="text: key"></p>
-						12321 = <p data-bind="text: $data"></p>
-					</div>
-
-					<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
-				</div>
-
-				<div data-bind="visible: reviewDisplay() === 'class'">
-					<div data-bind="with: currentClass">
-						<div data-bind="text: name"></div>
-						<div data-bind="text: notes"></div>
-					</div>
+				<div class="col-sm-9">
+					<h3>Master List</h3>
+					<ul data-bind="foreach:currentSemester().classes">
+						<li><a href="#" data-bind="text:name, click:$root.setClassReview"></a>
+							<ul data-bind="visible:notes">
+								<li data-bind="text:notes"></li>
+							</ul>
+							<hr>
+							<ul data-bind="foreach: songs">
+								<li data-bind="text: songName, click: $root.setSong"></li>
+							</ul>
+							<hr>
+						</li>
+					</ul>
 				</div>
 
 			</div>
-			
-			<div class="col-sm-4">
-				<h3>Class List for <span data-bind="text: currentSemester().name"></span></h3>
-				<ul data-bind="foreach: currentSemester().classes">
-					<li data-bind="text: name, click: $root.setReviewDisplayClass"></li>
-				</ul>
-			</div>
+		</div>
 
+
+		<!-- Editing Page -->
+		<div data-bind="visible: currentPage() === 'editing'">
+			<div data-bind="with: currentClass">
+				<form>
+					<h3>Current Class: <span data-bind="text: name"></span></h3>
+					<div class="row">
+						<div class="form-group col-sm-3">
+							<label>Materials:</label>
+							<textarea class="form-control" data-bind="textInput: materials"></textarea>
+						</div>
+						<div class="form-group col-sm-9">
+							<label>Notes:</label>
+							<textarea class="form-control" data-bind="textInput: notes"></textarea>
+						</div>
+					</div>
+				</form>
+				<div data-bind="foreach: songs">
+					<h4>
+						Song: <span data-bind="text:songName, click:$root.setSong"></span>
+					</h4>
+					<div>
+						URL: <input data-bind="textInput:songUrl"></input>
+					</div>
+					<div>
+						Key: <input data-bind="textInput:key"></input>
+					</div>
+					<div>
+						Notes: <textarea data-bind="textInput:notes"></textarea>
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+
+		<!-- Review Page -->
+
+		<div data-bind="visible: currentPage() === 'review'">
+			<div class="row">
+				
+				<div class="col-sm-4">
+					<h3>Available Songs</h3>
+					<ul data-bind="foreach:masterSongList">
+						<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-4">
+					<h3>Display</h3>
+					
+					<div data-bind="visible: reviewDisplay() === 'song'">
+						<div data-bind="with: currentSong()">
+							<h3>Song: 
+								<a data-bind="text: songName, attr: {href: songUrl}"></a>
+							</h3>
+							<p data-bind="text: key"></p>
+							notes: <p data-bind="text: notes"></p>
+						</div>
+
+						<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
+					</div>
+
+					<div data-bind="visible: reviewDisplay() === 'class'">
+						<div data-bind="with: currentClass">
+							<div data-bind="text: name"></div>
+							<div data-bind="text: notes"></div>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="col-sm-4">
+					<h3>Class List for <span data-bind="text: currentSemester().name"></span></h3>
+					<ul data-bind="foreach: currentSemester().classes">
+						<li data-bind="text: name, click: $root.setReviewDisplayClass"></li>
+					</ul>
+				</div>
+
+			</div>
 		</div>
 	</div>
-
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/lib/knockout-3.2.0.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
 	<script src="js/app.js"></script>
 	
 </body>

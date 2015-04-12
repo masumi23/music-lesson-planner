@@ -150,7 +150,7 @@ function init () {
 		// UI State
 		this.pages = ["editing", "semester", "review"];
 		this.reviewDisplays = ["song", "class"];
-		this.currentPage = ko.observable('review');
+		this.currentPage = ko.observable('editing');
 		this.reviewDisplay = ko.observable('song');
 
 		// bring the masterSongList into the VM
