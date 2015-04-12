@@ -24,8 +24,8 @@
 	    	    <ul class="nav navbar-nav" data-bind="foreach: pages">
 	    	        <li data-bind="css: { active: $root.currentPage() === $data}"><a href="javascript:void(0)" data-bind="text: $data, click: $root.setPage">Active</a></li>
 	    	    </ul>
-	    	    <form class="navbar-form navbar-left">
-	    	        <input type="text" class="form-control col-lg-8" placeholder="Search">
+	    	    <form class="navbar-form navbar-right">
+    	        	<input type="text" class="form-control" placeholder="Search">
 	    	    </form>
 	    	</div>
 	    </div>
@@ -45,7 +45,8 @@
 				
 				<div class="col-sm-9">
 					<h3>Master List</h3>
-					<ul data-bind="foreach:currentSemester().classes">
+					<!-- list-unstyled class doesn't work -->
+					<ul data-bind="foreach:currentSemester().classes" class="list-unstyled">
 						<li><a href="#" data-bind="text:name, click:$root.setClassReview"></a>
 							<ul data-bind="visible:notes">
 								<li data-bind="text:notes"></li>
@@ -80,19 +81,29 @@
 					</div>
 				</form>
 				<div data-bind="foreach: songs">
-					<h4>
-						Song: <span data-bind="text:songName, click:$root.setSong"></span>
-					</h4>
-					<div>
-						URL: <input data-bind="textInput:songUrl"></input>
-					</div>
-					<div>
-						Key: <input data-bind="textInput:key"></input>
-					</div>
-					<div>
-						Notes: <textarea data-bind="textInput:notes"></textarea>
-					</div>
-					<hr>
+					<form>
+						<div class="row">
+							<h4>
+								<label>Song:</label>
+								<span data-bind="text:songName, click:$root.setSong"></span>
+							</h4>
+							<div class="form-group col-sm-6">
+								<div>
+									<label>URL:</label>
+									<input class="form-control" data-bind="textInput:songUrl"></input>
+								</div>
+								<div>
+									<label>Key:</label>
+									<input class="form-control" data-bind="textInput:key"></input>
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label>Notes:</label>
+								<textarea class="form-control" rows="4" data-bind="textInput:notes"></textarea>
+							</div>
+							<hr>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -110,24 +121,48 @@
 				</div>
 
 				<div class="col-sm-4">
-					<h3>Display</h3>
+					<h2 data-bind="text: reviewDisplay"></h3>
 					
 					<div data-bind="visible: reviewDisplay() === 'song'">
-						<div data-bind="with: currentSong()">
-							<h3>Song: 
-								<a data-bind="text: songName, attr: {href: songUrl}"></a>
-							</h3>
-							<p data-bind="text: key"></p>
-							notes: <p data-bind="text: notes"></p>
-						</div>
+						<!-- all the available info on a song -->
+						<form class="form-horizontal">
+							<fieldset>
+								<div data-bind="with: currentSong()">
+									<legend data-bind="text: songName"></legend>
+									<div class="form-group">
+										<div>
+											<label class="control-label">Key</label>
+											<input class="form-control floating-label" placeholder="test-key" data-bind="textInput: key"></input>
+										</div>
+										<div>
+											<label>URL</label>
+											<input class="form-control" data-bind="textInput: songUrl"></input>
+										</div>
+										<div>
+											<label>Notes</label>
+											<textarea class="form-control" data-bind="textInput: notes"></textarea>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
 
-						<button data-bind="click: addToCurrentClass">Add to <span data-bind="text: currentClass().name"></span></button>
+						<button data-bind="click: addToCurrentClass" class="btn btn-flat btn-material-teal">Add to <span data-bind="text: currentClass().name"></span></button>
 					</div>
 
 					<div data-bind="visible: reviewDisplay() === 'class'">
 						<div data-bind="with: currentClass">
-							<div data-bind="text: name"></div>
-							<div data-bind="text: notes"></div>
+							<h3 data-bind="text: name"></h3>
+							<div class="form-group">
+								<form>
+									<textarea class ="form-control" data-bind="textInput: notes">test</textarea>
+									<ul data-bind="foreach: songs">
+										<li><div data-bind="click: $root.setSong"><h4 data-bind= "text: songName"><h4></div>
+											<li><textarea class="form-control" data-bind="textInput: notes"></textarea></li>
+										</li>
+									</ul>
+								</form>
+							</div>
 						</div>
 					</div>
 
@@ -136,7 +171,7 @@
 				<div class="col-sm-4">
 					<h3>Class List for <span data-bind="text: currentSemester().name"></span></h3>
 					<ul data-bind="foreach: currentSemester().classes">
-						<li data-bind="text: name, click: $root.setReviewDisplayClass"></li>
+						<li data-bind="text: name, click: $root.setClassReview"></li>
 					</ul>
 				</div>
 

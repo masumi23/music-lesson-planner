@@ -1,8 +1,11 @@
-// Features to add: 
+// Features to add:
+// Make sure when I add a song to a class, I add it as an instance 
 // Astericks by altered songs
+// Way to determine difference between Song and SongInstance in the review pane
 // Metrics for Mater list, and planning page
 // Formatting
 // Print parent view
+// Make separate review, transition, and notes areas
 
 var app = {
 	model: {
@@ -150,7 +153,7 @@ function init () {
 		// UI State
 		this.pages = ["editing", "semester", "review"];
 		this.reviewDisplays = ["song", "class"];
-		this.currentPage = ko.observable('editing');
+		this.currentPage = ko.observable('review');
 		this.reviewDisplay = ko.observable('song');
 
 		// bring the masterSongList into the VM
@@ -215,10 +218,6 @@ function init () {
 
 		this.togglePlanningView = function () {
 			self.planningView( !self.planningView() );
-		};
-
-		this.setReviewDisplayClass = function () {
-			self.reviewDisplay('class');
 		};
 	};
 
