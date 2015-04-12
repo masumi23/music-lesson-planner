@@ -3,20 +3,23 @@
 		"uid": 1,
 		"songName": "All around the kitchen (Cocky-doodle-doodle-do)",
 		"songUrl": "http://kodaly.hnu.edu/song.cfm?id=599",
-		"key": "A / l,t,Drma"
+		"key": "A / l,t,Drma",
+		"notes": "kitchen!"
 	},
 
 	{
 		"uid": 2,
 		"songName": "Apple Tree",
 		"songUrl": "http://emilyskodalymusic.blogspot.com/2013/05/apple-tree.html",
-		"key": "D / Dmsl"
+		"key": "D / Dmsl",
+		"notes": "Apple!"
 	},
 
 	{
 		"uid": 3,
 		"songName": "Baker shop (Down to the)",
 		"songUrl": "http://kodaly.hnu.edu/song.cfm?id=907",
-		"key": "D / Drmfsl"
+		"key": "D / Drmfsl",
+		"notes": "Baker!"
 	}
 ]

@@ -1,6 +1,12 @@
+// Features to add: 
+// Astericks by altered songs
+// Metrics for Mater list, and planning page
+// Formatting
+// Print parent view
+
 var app = {
 	model: {
-		masterSongList: ko. observableArray([])
+		masterSongList: ko.observableArray([])
 	}
 };
 
@@ -23,7 +29,7 @@ $.when(d1, d2).done(function(semesters, songs) {
 // rest of code
 
 function init () {
-
+	console.log('init');
 	// turn things from .json data into objects that we can use.
 	// there are new Song, SongInstance, and Class functions later - 
 	// hence capitalized
@@ -139,6 +145,7 @@ function init () {
 	// 
 	var ViewModel = function () {
 		var self = this;
+		console.log("ViewModel");
 
 		// UI State
 		this.pages = ["editing", "semester", "review"];
@@ -195,8 +202,10 @@ function init () {
 			self.reviewDisplay('song');
 		};
 		
-		this.setClass = function (clickedList) {
-			self.currentClass(clickedList);
+		this.setClassReview = function (clickedClass) {
+			self.currentClass(clickedClass);
+			self.currentPage('review');
+			self.reviewDisplay('class');
 		};
 
 		this.addToCurrentClass = function () {

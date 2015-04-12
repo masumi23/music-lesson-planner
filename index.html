@@ -8,7 +8,7 @@
 <body>
 	
 	<!-- still doesn't work well -->
-	<ul class="nav-pills" data-bind="foreach: pages">
+	<ul class="nav nav-pills" data-bind="foreach: pages">
 		<li role="presentation" <a href="#" data-bind="text: $data, click: $root.setPage"></a></li>
 	</ul>
 	<!-- Semester Page -->
@@ -25,7 +25,7 @@
 			<div class="col-sm-9">
 				<h3>Master List</h3>
 				<ul data-bind="foreach:currentSemester().classes">
-					<li><a href="#" data-bind="text:name, click:$root.setClass"></a>
+					<li><a href="#" data-bind="text:name, click:$root.setClassReview"></a>
 						<ul data-bind="visible:notes">
 							<li data-bind="text:notes"></li>
 						</ul>
@@ -33,6 +33,7 @@
 						<ul data-bind="foreach: songs">
 							<li data-bind="text: songName, click: $root.setSong"></li>
 						</ul>
+						<hr>
 					</li>
 				</ul>
 			</div>
@@ -46,14 +47,25 @@
 		<form data-bind="with: currentClass">
 			<h3>Current Class: <span data-bind="text: name"></span></h3>
 			<p>
-				Notes: <input data-bind="textInput: notes"></input>
+				Notes: <textarea data-bind="textInput: notes"></textarea>
 			</p>
 			<p>
 				Materials: <input data-bind="textInput: materials"></input>
 			</p>
 			<div data-bind="foreach: songs">
-				<div><a href="#" data-bind="text:uid"></a></div>
-				<input data-bind="textInput:notes"></input>
+				<h4>
+					Song: <span data-bind="text:songName, click:$root.setSong"></span>
+				</h4>
+				<div>
+					URL: <input data-bind="textInput:songUrl"></input>
+				</div>
+				<div>
+					Key: <input data-bind="textInput:key"></input>
+				</div>
+				<div>
+					Notes: <textarea data-bind="textInput:notes"></textarea>
+				</div>
+				<hr>
 			</div>
 		</form>
 	</div>
@@ -107,7 +119,6 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/lib/knockout-3.2.0.js"></script>
-	<script src="js/lib/knockout.mapping-latest.js"></script>
 	<script src="js/app.js"></script>
 	
 </body>
