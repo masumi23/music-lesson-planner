@@ -45,19 +45,19 @@
 				
 				<div class="col-sm-9">
 					<h3>Master List</h3>
-					<!-- list-unstyled class doesn't work -->
-					<ul data-bind="foreach:currentSemester().classes" class="list-unstyled">
-						<li><a href="#" data-bind="text:name, click:$root.setClassReview"></a>
-							<ul data-bind="visible:notes">
-								<li data-bind="text:notes"></li>
-							</ul>
-							<hr>
-							<ul data-bind="foreach: songs">
+					<div data-bind="foreach:currentSemester().classes" class="panel panel-primary">
+						<div data-bind="text:name, click:$root.setClassReview" class="panel-heading"></div>
+						<div class="panel-body">
+							<div data-bind="visible:notes">
+								<div data-bind="text:notes"></div>
+							</div>
+							<h4>Songs:</h4>
+							<ul data-bind="foreach: songs" class="list-unstyled">
 								<li data-bind="text: songName, click: $root.setSong"></li>
 							</ul>
-							<hr>
-						</li>
-					</ul>
+						</div>
+						<hr>
+					</div>
 				</div>
 
 			</div>
@@ -125,11 +125,11 @@
 					
 					<div data-bind="visible: reviewDisplay() === 'song'">
 						<!-- all the available info on a song -->
-						<form class="form-horizontal">
+						<form>
 							<fieldset>
-								<div data-bind="with: currentSong()">
-									<legend data-bind="text: songName"></legend>
-									<div class="form-group">
+								<div data-bind="with: currentSong()"  class="panel panel-primary">
+									<legend data-bind="text: songName" class="panel-heading"></legend>
+									<div class="form-group panel-body">
 										<div>
 											<label class="control-label">Key</label>
 											<input class="form-control floating-label" placeholder="test-key" data-bind="textInput: key"></input>
@@ -143,17 +143,17 @@
 											<textarea class="form-control" data-bind="textInput: notes"></textarea>
 										</div>
 									</div>
+									<button data-bind="click: $root.addToCurrentClass" class="btn btn-flat btn-material-teal">Add to <span data-bind="text: $root.currentClass().name"></span></button>
 								</div>
 							</fieldset>
 						</form>
 
-						<button data-bind="click: addToCurrentClass" class="btn btn-flat btn-material-teal">Add to <span data-bind="text: currentClass().name"></span></button>
 					</div>
 
 					<div data-bind="visible: reviewDisplay() === 'class'">
-						<div data-bind="with: currentClass">
-							<h3 data-bind="text: name"></h3>
-							<div class="form-group">
+						<div data-bind="with: currentClass" class="panel panel-primary">
+							<h3 data-bind="text: name" class="panel-heading"></h3>
+							<div class="form-group panel-body">
 								<form>
 									<textarea class ="form-control" data-bind="textInput: notes">test</textarea>
 									<ul data-bind="foreach: songs">
