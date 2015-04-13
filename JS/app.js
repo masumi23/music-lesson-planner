@@ -161,7 +161,7 @@ function init () {
 
 		// bring the masterSongList into the VM
 		// do I ever use this??
-		this.masterSongList = app.model.masterSongList();
+		this.masterSongList = app.model.masterSongList;
 		
 		//  create semesters array
 		this.semesters = ko.observableArray([]);
@@ -215,6 +215,10 @@ function init () {
 			self.reviewDisplay('class');
 		};
 
+		this.songReview = function () {
+			self.reviewDisplay('song');
+		};
+
 		this.addToCurrentClass = function () {
 			self.currentClass().songs.push( self.currentSong() );
 			console.log(self.currentClass());
@@ -226,11 +230,13 @@ function init () {
 
 		this.addSong = function () {
 			
-			self.reviewDisplay('add');
-			app.model.masterSongList().push( new Song() );
-			self.currentSong(app.model.masterSongList()[app.model.masterSongList().length-1]);
+			var theList = app.model.masterSongList();
+
+			app.model.masterSongList.push( new Song() );
+			self.currentSong(theList[theList.length-1]);
 			console.log(self.currentSong().songName());
-			console.log(self.masterSongList);
+			console.log(self.masterSongList[theList.length-1].songName());
+			console.log(theList[1].songName());
 		};
 	};
 

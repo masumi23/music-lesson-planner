@@ -118,7 +118,7 @@
 			<div class="row">
 				
 				<div class="col-sm-4">
-					<h3>Available Songs</h3>
+					<h3 data-bind="click: songReview">Available Songs</h3>
 					<button class="btn btn-flat btn-material-teal" data-bind="click:addSong">Add a song</button>
 					<ul data-bind="foreach:masterSongList">
 						<li><a href="#" data-bind="text:songName, click: $root.setSong" ></a></li>
@@ -133,9 +133,13 @@
 						<form>
 							<fieldset>
 								<div data-bind="with: currentSong()"  class="panel panel-primary">
-									<legend data-bind="text: songName" class="panel-heading"></legend>
+									<H2 class="panel-heading">THE SONG</H2>
 									<div class="form-group panel-body">
 										<div>
+											<label class="control-label">Song Name</label>
+											<input class="form-control" data-bind="textInput: songName" >
+										</div>
+										<div>	
 											<label class="control-label">Key</label>
 											<input class="form-control floating-label" placeholder="test-key" data-bind="textInput: key"></input>
 										</div>
