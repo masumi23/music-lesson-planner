@@ -37,11 +37,14 @@ function init () {
 	// there are new Song, SongInstance, and Class functions later - 
 	// hence capitalized
 	var Song = function (data) {
-		this.songName = ko.observable(data.songName);
-		this.songUrl = ko.observable(data.songUrl);
-		this.key = ko.observable(data.key);
-		this.uid = ko.observable(data.uid);
-		this.notes = ko.observable(data.notes);
+		if (!data) {
+			data = {};
+		}
+		this.songName = ko.observable(data.songName || '');
+		this.songUrl = ko.observable(data.songUrl || '');
+		this.key = ko.observable(data.key || '');
+		this.uid = ko.observable(data.uid || '');
+		this.notes = ko.observable(data.notes || '');
 	};
 
 	// Song instances can have their own versions of properties, but fall
@@ -151,12 +154,13 @@ function init () {
 		console.log("ViewModel");
 
 		// UI State
-		this.pages = ["editing", "semester", "review"];
-		this.reviewDisplays = ["song", "class"];
+		this.pages = ["semester", "editing", "review"];
+		this.reviewDisplays = ["song", "class", "add", "added"];
 		this.currentPage = ko.observable('review');
 		this.reviewDisplay = ko.observable('song');
 
 		// bring the masterSongList into the VM
+		// do I ever use this??
 		this.masterSongList = app.model.masterSongList();
 		
 		//  create semesters array
@@ -218,6 +222,15 @@ function init () {
 
 		this.togglePlanningView = function () {
 			self.planningView( !self.planningView() );
+		};
+
+		this.addSong = function () {
+			
+			self.reviewDisplay('add');
+			app.model.masterSongList().push( new Song() );
+			self.currentSong(app.model.masterSongList()[app.model.masterSongList().length-1]);
+			console.log(self.currentSong().songName());
+			console.log(self.masterSongList);
 		};
 	};
 
