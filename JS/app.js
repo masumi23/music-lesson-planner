@@ -51,6 +51,7 @@ function init () {
 	// back onto the associated song (by uid) in the song list when a
 	// property doesn't have an explicit value set.
 	var SongInstance = function (data) {
+		console.log(data);
 		var allSongs = app.model.masterSongList();
 		
 		// Find the associated song with this song instance, searching by uid
@@ -219,9 +220,26 @@ function init () {
 			self.reviewDisplay('song');
 		};
 
+		// Copy the current song as a "SongInstance" into the current class
 		this.addToCurrentClass = function () {
-			self.currentClass().songs.push( self.currentSong() );
-			console.log(self.currentClass());
+			var currentSong = self.currentSong();
+			console.log(currentSong.uid());
+			function ConvertObj() {
+				this.uid = currentSong.uid();
+				this.songName = currentSong.songName();
+				this.notes = currentSong.notes();
+				this.key = currentSong.key();
+				this.songUrl = currentSong.songUrl();
+			}
+
+			//this is undefined...but it still works
+			console.log(ConvertObj()+"hi");
+			
+			var o = new ConvertObj();
+			
+			self.currentClass().songs().push(
+			new SongInstance(o)
+			);
 		};
 
 		this.togglePlanningView = function () {
@@ -229,7 +247,6 @@ function init () {
 		};
 
 		this.addSong = function () {
-			
 			var theList = app.model.masterSongList();
 
 			app.model.masterSongList.push( new Song() );
