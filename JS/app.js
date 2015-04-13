@@ -224,6 +224,8 @@ function init () {
 		this.addToCurrentClass = function () {
 			var currentSong = self.currentSong();
 			console.log(currentSong.uid());
+			
+			
 			function ConvertObj() {
 				this.uid = currentSong.uid();
 				this.songName = currentSong.songName();
@@ -237,6 +239,13 @@ function init () {
 			
 			var o = new ConvertObj();
 			
+
+			// function ConvertObj () {
+			// ko.toJSON(self.currentSong());
+			// }
+
+			// var o = new ConvertObj();
+
 			self.currentClass().songs().push(
 			new SongInstance(o)
 			);
